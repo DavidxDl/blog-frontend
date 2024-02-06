@@ -107,7 +107,8 @@ export default function PostInfo({ post }: Props) {
 
         <input
           type="submit"
-          className="mt-3 border-cyan-900 border-2 rounded-full  ml-2 p-2 "
+          className="hover:bg-cyan-900 mt-3 border-cyan-900 border-2 rounded-full  ml-2 p-2 "
+          value="Send Comment"
         />
       </form>
     </div>
