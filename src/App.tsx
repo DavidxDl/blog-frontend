@@ -29,7 +29,7 @@ function App() {
   return (
     <>
       <Header />
-      <main className="px-5 flex flex-col gap-4 w-full m-0">
+      <main className="pb-4 px-5 flex flex-col gap-4 w-full m-0">
         {selectedPost ? (
           <>
             <button
