@@ -22,7 +22,6 @@ function App() {
     async function getPosts() {
       const res = await fetch("http://localhost:3000/posts");
       const data = await res.json();
-      data[2].published = true;
       setPosts(data.filter((p: post) => p.published === true));
     }
     getPosts().catch((err) => console.log(err));
