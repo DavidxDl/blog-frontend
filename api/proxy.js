@@ -1,6 +1,6 @@
-const fetch = require("node-fetch");
+import {fetch} from "node-fetch"
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   try {
     const res = await fetch("http://172.233.16.85/posts");
     const data = await res.json();
