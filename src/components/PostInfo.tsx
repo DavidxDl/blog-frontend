@@ -20,24 +20,21 @@ export default function PostInfo({ post }: Props) {
       email: emailInput,
       message: commentInput,
     };
-    const res = await fetch(
-      `http://172.233.16.85:3000/posts/${post._id}/comments`,
-      {
-        method: "POST",
-        headers: {
-          accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(commentTmp),
+    const res = await fetch(`http://172.233.16.85/posts/${post._id}/comments`, {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "Content-Type": "application/json",
       },
-    );
+      body: JSON.stringify(commentTmp),
+    });
     console.log(res);
     if (res.ok) {
       setEmailInput("");
       setCommentInput("");
 
       const res = await fetch(
-        `http://172.233.16.85:3000/posts/${post._id}/comments`,
+        `http://172.233.16.85/posts/${post._id}/comments`,
       );
       const data = await res.json();
       setComments(data);
@@ -46,7 +43,7 @@ export default function PostInfo({ post }: Props) {
   useEffect(() => {
     (async function getData() {
       const res = await fetch(
-        `http://172.233.16.85:3000/posts/${post._id}/comments`,
+        `http://172.233.16.85/posts/${post._id}/comments`,
       );
       const data = await res.json();
       console.log(data);

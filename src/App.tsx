@@ -20,7 +20,7 @@ function App() {
   }
   useEffect(() => {
     async function getPosts() {
-      const res = await fetch("http://172.233.16.85:3000/posts");
+      const res = await fetch("http://172.233.16.85/posts");
       const data = await res.json();
       setPosts(data.filter((p: post) => p.published === true));
     }
