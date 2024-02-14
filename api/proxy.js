@@ -3,6 +3,7 @@ import fetch from "node-fetch";
 export default async (req, res) => {
   try {
     const { path } = req;
+    console.log(path);
     let url = "http://172.233.16.85";
 
     if (path.startsWith("/posts")) {
