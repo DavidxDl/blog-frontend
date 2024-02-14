@@ -4,20 +4,21 @@ import { post } from "../App";
 type message = {
   email: string;
   message: string;
-  timestamp: string;
+  timestamp?: string;
 };
 
 interface Props {
   post: post;
 }
 export default function PostInfo({ post }: Props) {
-  const [email, setEmail] = useState<string>("");
-  const [comment, setComment] = useState<string>("");
+  const [emailInput, setEmailInput] = useState<string>("");
+  const [commentInput, setCommentInput] = useState<string>("");
+  const [comments, setComments] = useState<message[] | null>();
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const commentTmp = {
-      email: email,
-      message: comment,
+    const commentTmp: message = {
+      email: emailInput,
+      message: commentInput,
     };
     const res = await fetch(
       `http://172.233.16.85:3000/posts/${post._id}/comments`,
@@ -32,8 +33,8 @@ export default function PostInfo({ post }: Props) {
     );
     console.log(res);
     if (res.ok) {
-      setEmail("");
-      setComment("");
+      setEmailInput("");
+      setCommentInput("");
 
       const res = await fetch(
         `http://172.233.16.85:3000/posts/${post._id}/comments`,
@@ -45,7 +46,7 @@ export default function PostInfo({ post }: Props) {
   useEffect(() => {
     (async function getData() {
       const res = await fetch(
-        `http://172.233.16.85:3000posts/${post._id}/comments`,
+        `http://172.233.16.85:3000/posts/${post._id}/comments`,
       );
       const data = await res.json();
       console.log(data);
@@ -59,14 +60,14 @@ export default function PostInfo({ post }: Props) {
       <p>{post.timestamp}</p>
       <div className="flex flex-col gap-5 ">
         <h2 className="text-center">Comments</h2>
-        {comments.length ? (
-          comments.map((comment) => (
+        {comments && comments.length ? (
+          comments.map((c) => (
             <>
               <div className="border rounded p-3">
                 <h2>
-                  <span className="text-xl">✉️</span>: {comment.email}
+                  <span className="text-xl">✉️</span>: {c.email}
                 </h2>
-                <p>{comment.message}</p>
+                <p>{c.message}</p>
               </div>
             </>
           ))
@@ -85,8 +86,8 @@ export default function PostInfo({ post }: Props) {
             type="email"
             id="email"
             name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={emailInput}
+            onChange={(e) => setEmailInput(e.target.value)}
             required
           />
         </div>
@@ -98,8 +99,8 @@ export default function PostInfo({ post }: Props) {
             className="block w-full p-2 shadow shadow-black rounded-2xl"
             required
             name="comment"
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
+            value={commentInput}
+            onChange={(e) => setCommentInput(e.target.value)}
             id="comment"
           />
         </div>
