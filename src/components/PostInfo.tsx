@@ -11,7 +11,6 @@ interface Props {
   post: post;
 }
 export default function PostInfo({ post }: Props) {
-  const [comments, setComments] = useState<message[]>([]);
   const [email, setEmail] = useState<string>("");
   const [comment, setComment] = useState<string>("");
   async function handleSubmit(e: React.FormEvent) {
@@ -21,7 +20,7 @@ export default function PostInfo({ post }: Props) {
       message: comment,
     };
     const res = await fetch(
-      `http://localhost:3000/posts/${post._id}/comments`,
+      `http://172.233.16.85:3000/posts/${post._id}/comments`,
       {
         method: "POST",
         headers: {
@@ -37,7 +36,7 @@ export default function PostInfo({ post }: Props) {
       setComment("");
 
       const res = await fetch(
-        `http://localhost:3000/posts/${post._id}/comments`,
+        `http://172.233.16.85:3000/posts/${post._id}/comments`,
       );
       const data = await res.json();
       setComments(data);
@@ -46,7 +45,7 @@ export default function PostInfo({ post }: Props) {
   useEffect(() => {
     (async function getData() {
       const res = await fetch(
-        `http://localhost:3000/posts/${post._id}/comments`,
+        `http://172.233.16.85:3000posts/${post._id}/comments`,
       );
       const data = await res.json();
       console.log(data);
