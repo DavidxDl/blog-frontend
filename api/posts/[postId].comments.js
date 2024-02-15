@@ -7,6 +7,7 @@ export default async (req, res) => {
     //yep
     const response = await fetch(
       `http://172.233.16.85/posts/${actualPostId}/comments`,
+      { cache: "no-cache" },
     );
     const data = await response.json();
     res.status(200).json(data);
