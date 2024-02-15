@@ -3,10 +3,7 @@ import fetch from "node-fetch";
 export default async (req, res) => {
   try {
     const { postId } = req.query;
-    const actualPostId = postId.slice(0, -8);
-    const response = await fetch(
-      `http://172.233.16.85/posts/${actualPostId}/comments`,
-    );
+    const response = await fetch(`http://172.233.16.85/posts/${postId}`);
     const data = await response.json();
     res.status(200).json(data);
   } catch (err) {
