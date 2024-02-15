@@ -11,6 +11,22 @@ export default async (req, res) => {
         );
         const data = await response.json();
         return res.status(200).json(data);
+      } else {
+        const commentTmp = {
+          email: req.body.email,
+          message: req.body.email,
+        };
+        const response = await fetch(
+          `http://172.233.16.85/posts/${postId}/comments`,
+          {
+            method: "POST",
+            headers: {
+              accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(commentTmp),
+          },
+        );
       }
     }
 

@@ -20,14 +20,17 @@ export default function PostInfo({ post }: Props) {
       email: emailInput,
       message: commentInput,
     };
-    const res = await fetch(`http://172.233.16.85/posts/${post._id}/comments`, {
-      method: "POST",
-      headers: {
-        accept: "application/json",
-        "Content-Type": "application/json",
+    const res = await fetch(
+      `https://blog-frontend-tau-seven.vercel.app/api/posts/${post._id}.comments`,
+      {
+        method: "POST",
+        headers: {
+          accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(commentTmp),
       },
-      body: JSON.stringify(commentTmp),
-    });
+    );
     console.log(res);
     if (res.ok) {
       setEmailInput("");
