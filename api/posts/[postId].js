@@ -2,11 +2,19 @@ import fetch from "node-fetch";
 
 export default async (req, res) => {
   try {
-    const { postId } = req.query;
-    const actualPostId = postId.slice(0, -9);
-    const response = await fetch(
-      `http://172.233.16.85/posts/${actualPostId}/comments`,
-    );
+    let { postId } = req.query;
+    if (postId.endsWith(".comments")) {
+      postId = postId.slice(0, -9);
+
+      const response = await fetch(
+        `http://172.233.16.85/posts/${postId}/comments`,
+      );
+      const data = await response.json();
+      res.status(200).json(data);
+      return;
+    }
+
+    const response = await fetch(`http://172.233.16.85/posts/${postId}`);
     const data = await response.json();
     res.status(200).json(data);
   } catch (err) {
