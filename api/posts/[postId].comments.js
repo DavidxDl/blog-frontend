@@ -10,6 +10,9 @@ export default async (req, res) => {
     const data = await response.json();
     res.status(200).json(data);
   } catch (err) {
-    res.status(500).json({ error: "internal server error" });
+    console.log(req.params.postId);
+    res
+      .status(500)
+      .json({ error: "internal server error", params: req.params.postId });
   }
 };
