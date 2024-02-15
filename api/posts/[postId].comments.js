@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 
 export default async (req, res) => {
   const postId = req.params.postId;
-  const actualPostId = postId.splice(0, -8);
+  const actualPostId = "habibi";
   try {
     //yep
     const response = await fetch(
