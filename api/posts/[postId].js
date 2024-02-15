@@ -5,13 +5,16 @@ export default async (req, res) => {
     let { postId } = req.query;
     if (postId.endsWith(".comments")) {
       postId = postId.slice(0, -9);
-
-      const response = await fetch(
-        `http://172.233.16.85/posts/${postId}/comments`,
-      );
-      const data = await response.json();
-      res.status(200).json(data);
-      return;
+      if (res.method === "GET") {
+        const response = await fetch(
+          `http://172.233.16.85/posts/${postId}/comments`,
+        );
+        const data = await response.json();
+        res.status(200).json(data);
+        return;
+      } else {
+        return
+      }
     }
 
     const response = await fetch(`http://172.233.16.85/posts/${postId}`);
