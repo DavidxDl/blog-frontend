@@ -10,10 +10,9 @@ export default async (req, res) => {
           `http://172.233.16.85/posts/${postId}/comments`,
         );
         const data = await response.json();
-        res.status(200).json(data);
-        return;
+        return res.status(200).json(data);
       } else {
-        return
+        return;
       }
     }
 
