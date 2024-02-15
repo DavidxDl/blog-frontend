@@ -9,6 +9,8 @@ export default async (req, res) => {
     res.status(200).json(data);
   } catch (err) {
     const { postId } = req.query;
-    res.status(500).json({ postId: postId, error: "internal server error" });
+    res
+      .status(500)
+      .json({ postId: postId.slice(0, -8), error: "internal server error" });
   }
 };
