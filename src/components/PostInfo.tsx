@@ -13,7 +13,7 @@ interface Props {
 export default function PostInfo({ post }: Props) {
   const [emailInput, setEmailInput] = useState<string>("");
   const [commentInput, setCommentInput] = useState<string>("");
-  const [comments, setComments] = useState<message[] | null>();
+  const [comments, setComments] = useState<message[]>([]);
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const commentTmp: message = {
@@ -57,7 +57,7 @@ export default function PostInfo({ post }: Props) {
       <p>{post.timestamp}</p>
       <div className="flex flex-col gap-5 ">
         <h2 className="text-center">Comments</h2>
-        {comments && comments.length ? (
+        {comments.length ? (
           comments.map((c) => (
             <>
               <div className="border rounded p-3">
