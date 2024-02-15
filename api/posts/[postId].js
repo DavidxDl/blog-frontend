@@ -14,7 +14,7 @@ export default async (req, res) => {
       } else {
         const commentTmp = {
           email: req.body.email,
-          message: req.body.email,
+          message: req.body.message,
         };
         const response = await fetch(
           `http://172.233.16.85/posts/${postId}/comments`,
