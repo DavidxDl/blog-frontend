@@ -5,7 +5,7 @@ export default async (req, res) => {
     //yep
     const postId = req.params.postId.split(".");
     const response = await fetch(
-      `http://172.233.16.85/posts/${postId[0]}/comments`,
+      `http://172.233.16.85/posts/${postId[1]}/comments`,
     );
     const data = await response.json();
     res.status(200).json(data);
