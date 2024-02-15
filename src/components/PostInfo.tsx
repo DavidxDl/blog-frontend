@@ -34,7 +34,7 @@ export default function PostInfo({ post }: Props) {
       setCommentInput("");
 
       const res = await fetch(
-        `http://172.233.16.85/posts/${post._id}/comments`,
+        `https://blog-frontend-tau-seven.vercel.app/api/posts/${post._id}/comments`,
       );
       const data = await res.json();
       setComments(data);
@@ -43,7 +43,7 @@ export default function PostInfo({ post }: Props) {
   useEffect(() => {
     (async function getData() {
       const res = await fetch(
-        `http://172.233.16.85/posts/${post._id}/comments`,
+        `https://blog-frontend-tau-seven.vercel.app/api/posts/${post._id}/comments`,
       );
       const data = await res.json();
       console.log(data);
